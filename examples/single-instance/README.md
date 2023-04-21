@@ -106,9 +106,9 @@ ssh-keygen -t rsa -b 2048 -f admin-ssh-key
 
 ```bash
 cd examples/single-instance
-# modify the  terraform.tfvars to make sure all the values fit the use case 
+# modify the  terraform.tfvars to make sure all the values fit the use case
 # such as admin_ssh_pub_key
-terraform init 
+terraform init
 terraform plan -var-file=terraform.tfvars
 terraform apply -var-file=terraform.tfvars
 terraform destroy -var-file=terraform.tfvars
@@ -190,7 +190,7 @@ module "vm" {
 }
 
 module "lb-1" {
-  
+
   source = "../../modules/load_balancer"
   networks_map        = module.networking.networks_map
   project_id          = "terraform-demo-370415"
@@ -205,5 +205,11 @@ module "lb-1" {
   named_ports         = ["1"]
   instance_ids        = module.vm.instance_ids
 }
+```
+## Outputs
 
+| Name | Description |
+|------|-------------|
+| networks\_map| The internal networks data structure used|
+| vm_external\_ips | The external IPs of the vm instances|
 <!-- END_TF_DOCS -->
